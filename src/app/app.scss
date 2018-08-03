@@ -14,3 +14,13 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+.rodape-app {
+	font-weight: bold;
+	background-color: #488aff;
+	text-align: center;
+}
+
+#menu-principal {
+	// Colocar imagem da STG de fundo
+}
+#menu-principal .modulo-button { background-color: rgba(255,255,255,.1); }

@@ -1,1 +1,23 @@
-<ion-nav [root]="rootPage"></ion-nav>
+<ion-menu [content]='menu'>
+	<ion-header>
+	    <ion-toolbar>
+		    <ion-title menuClose color="primary">
+		        Menu
+		    </ion-title>
+	    </ion-toolbar>
+	</ion-header>
+
+	<ion-content id="menu-principal">
+		<ion-list>
+			
+			<button ion-item *ngFor="let item of pages" (click)="mudarPagina(item)" class="modulo-button">
+				{{item.titulo}}
+			</button>
+		</ion-list>
+	</ion-content>
+</ion-menu>
+<ion-nav #menu [root]="rootPage"></ion-nav>
+
+<ion-footer class="rodape-app">
+    <p> STG SAÚDE - Todos os direitos reservados. </p>
+</ion-footer>
