@@ -1,0 +1,43 @@
+
+<ion-header>
+  <ion-navbar color="edit">
+
+    <ion-icon name="md-arrow-back" id="iconBack" color="secondary" (click)="fecharPagina()"></ion-icon>
+    <h3 style="display: inline-block; margin-left: 5pt;"> Adicionar Externo </h3>
+
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+  <h3 id="listaTitulo">Dados do acesso externo</h3>
+  <form [formGroup]="externoForm" (submit)="validaFormulario()" novalidate>
+
+    <ion-item>
+      <ion-label floating>Nome</ion-label>
+      <ion-input [(ngModel)]="dadosForm.nome" formControlName="nome" type="text"  clearInput clearOnEdit="false"></ion-input>
+    </ion-item>
+    <h6 *ngIf="erroValidacao.nome" class="error">Ops! Nome inválido.</h6>
+
+    <ion-item>
+      <ion-label floating>Link Externo</ion-label>
+      <ion-input [(ngModel)]="dadosForm.endereco" formControlName="endereco" type="text"  clearInput clearOnEdit="false"></ion-input>
+    </ion-item>
+    <h6 *ngIf="erroValidacao.endereco" class="error">Ops! Link inválido.</h6>
+
+    <ion-item>
+      <ion-label floating>Usuario</ion-label>
+      <ion-input [(ngModel)]="dadosForm.usuario" formControlName="usuario" type="text"  clearInput clearOnEdit="false"></ion-input>
+    </ion-item>
+    <h6 *ngIf="erroValidacao.usuario" class="error">Ops! Usuário inválido.</h6>
+
+    <ion-item>
+      <ion-label floating>Senha</ion-label>
+      <ion-input [(ngModel)]="dadosForm.senha" formControlName="senha" type="password" clearInput clearOnEdit="false"></ion-input>
+    </ion-item>
+    <h6 *ngIf="erroValidacao.senha" class="error">Ops! A senha não pode ser vazia.</h6>
+    <br>
+    <button ion-button full color="secondary">Enviar</button>
+  </form>
+
+</ion-content>

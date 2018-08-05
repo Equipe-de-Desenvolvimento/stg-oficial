@@ -21,12 +21,12 @@ export class MyApp {
     platform.ready().then(() => {
       // Verifica status do banco de dados
       this.databaseprovider.getDatabaseState().subscribe(rdy => console.log(rdy));
-    });
+    }).catch((err) => console.log(err));
   }
 
   mudarPagina(pagina){
-    this.menu.close();
-    this.nav.setRoot(pagina.componente);
+    this.menu.close(); // Fechando o menu
+    this.nav.setRoot(pagina.componente); // Setando como Pagina Principal o item selecionado
   }
 }
 

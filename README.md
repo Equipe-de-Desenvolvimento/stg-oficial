@@ -6,11 +6,11 @@ Execute
 
 npm install ap-angular2-fullcalendar --save
 
-ionic cordova plugin add uk.co.workingedge.cordova.plugin.sqliteporter
+ionic cordova plugin add uk.co.workingedge.cordova.plugin.sqliteporter --save
 
-ionic cordova plugin add cordova-sqlite-storage
+ionic cordova plugin add cordova-sqlite-storage --save
 
-npm install --save @ionic-native/sqlite-porter @ionic-native/sqlite
+npm install @ionic-native/sqlite-porter @ionic-native/sqlite --save 
 
 npm audit fix
 

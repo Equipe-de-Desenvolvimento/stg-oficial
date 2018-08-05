@@ -8,6 +8,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { HttpModule } from '@angular/http';
 
 import { MyApp } from './app.component';
+import { WebserviceProvider } from '../providers/webservice/webservice';
 import { DatabaseProvider } from '../providers/database/database';
 import { SQLitePorter } from '@ionic-native/sqlite-porter';
 import { SQLite } from '@ionic-native/sqlite';
@@ -30,6 +31,7 @@ import { SQLite } from '@ionic-native/sqlite';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
+    WebserviceProvider,
     DatabaseProvider,
     SQLitePorter,
     SQLite

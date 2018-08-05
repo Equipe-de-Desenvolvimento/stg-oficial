@@ -1,0 +1,46 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Acesso Externo</ion-title>
+
+    <button ion-button menuToggle="">
+      <ion-icon name="menu"></ion-icon>
+    </button>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+
+  <ion-card>
+    <h3 id="listaTitulo">Lista de Externos</h3>
+    <ion-list>
+      <ion-item *ngFor="let item of externoLista">
+        <ion-grid no-padding>
+          <ion-row>
+            <ion-col col-8>
+              <div>
+                <span class="nome" style="font-weight: bold">{{item.nome}}</span><br>
+                <span class="endereco">{{trechoEndereco(item.endereco)}}</span>
+              </div>
+            </ion-col>
+            <ion-col col-4>
+              <button ion-button item-end color="dark" outline icon-only (click)="editarExterno(item)">
+                <ion-icon name="md-create" class="ion-icon"></ion-icon>
+              </button>
+              <button ion-button item-end color="danger" outline icon-only (click)="confirmacaoExcluirExterno(item.externo_id)">
+                <ion-icon name='trash' class="ion-icon"></ion-icon>
+              </button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+    </ion-list>
+    
+    <ion-fab right edge id="btnAdd">
+      <button ion-fab danger color="secondary" (click)="adicionarExterno()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-fab>
+  </ion-card>
+</ion-content>

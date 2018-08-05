@@ -8,6 +8,7 @@ CREATE TABLE IF NOT EXISTS tb_externo (
     nome TEXT, 
     usuario TEXT, 
     senha TEXT,
+    operador_id INTEGER,
     empresas_id TEXT -- Esse campo irá salvar um array JSON com as empresas que este usuário está autorizado a logar.
 );
 
