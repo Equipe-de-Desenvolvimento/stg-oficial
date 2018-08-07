@@ -1,0 +1,28 @@
+page-externo-principal {
+    #btnAdd{
+		display: block;
+        margin: 15pt;
+    }
+    #listaTitulo{
+        font-size: 1.4em;
+        color: #26A69A;
+		margin:10pt;
+		text-indent: 15pt;
+        font-weight: bold;
+	}
+    ion-item div span.nome {
+		max-width: 5ch;
+		font-weight: bold;
+		font-size: 13.5pt;
+	}
+	ion-item div span.endereco {
+		font-weight: bold;
+		font-size: 10pt;	
+		font-style: italic;
+		color: #EE4F00;
+	}
+
+	ion-item *{
+		display: inline-block;
+	}
+}

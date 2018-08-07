@@ -1,0 +1,7 @@
+{
+  "name": "stg-oficial",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
