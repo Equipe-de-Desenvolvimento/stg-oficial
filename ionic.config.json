@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
   "name": "stg-oficial",
+=======
+  "name": "stg oficial",
+>>>>>>> 42affb6314182fc8c7c676239e4b25798a6e5091
   "integrations": {
     "cordova": {}
   },

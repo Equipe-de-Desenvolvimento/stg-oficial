@@ -46,4 +46,5 @@ export class HomePage implements OnInit {
   eventClick(parametro){
     console.log(parametro);
   }
+
 }
