@@ -16,4 +16,3 @@ npm install ng-fullcalendar --save
 
 npm install fullcalendar@3.6.1
 
-npm audit fix
