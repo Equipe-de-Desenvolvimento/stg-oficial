@@ -42,7 +42,9 @@ export class HomePage implements OnInit {
         // Traz a lista de enderecos externos
         this.database.listaEnderecosExternos().then( (data) => {
           this.externoLista = data;
+
           if (this.navParams.get('parametros') == null){
+            // Caso não tenha sido escolhido nenhum externo em especifico ele irá mostrar todos.  
             for (let x = 0; x < data.length; x++){
               let url = data[x].endereco+"app/listarhorarioscalendario?operador_id="+data[x].operador_id; 
               this.parametros.url_externos_source.push(url); 
