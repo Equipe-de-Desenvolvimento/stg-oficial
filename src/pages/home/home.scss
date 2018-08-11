@@ -1,3 +1,94 @@
 page-home {
+    .externoNome{
+		font-style: oblique;
+		display: block;
+		padding-right: 1pt;
+	}
 
+	ul#areaDeBusca {width: 100%}
+	ul#areaDeBusca li {
+		display: inline-block; font-size: 15pt; 
+	}
+	.inputPaciente {width: 70%; margin-left: -15pt}
+
+	input[type=text] {
+		width: 60%;
+		box-sizing: border-box;
+		border: 0px solid #ccc;
+		border-radius: 4px;
+		background-color: white;
+		padding: 11px 20px 7px 5px;
+		-webkit-transition: width 0.4s ease-in-out;
+		transition: width 0.4s ease-in-out;
+	}
+
+	input[type=text]:focus {
+		border-right: 2px solid #ccc;
+		width: 75%;
+	}
+
+	.borderBottom { border-bottom: 2px solid #ccc; border-radius: 4px; }
+
+	.li-border{ border: 1pt  dashed grey; border-radius: 5pt; padding: 5pt;}
+	#iconBack { margin-right: 10pt; }
+
+	.pesquisar {
+		display: inline-block;
+		position: absolute; 
+		width: auto;
+		right: 0pt;
+		top: 10pt;
+		border-left: 2px solid #ccc; 
+		border-bottom: 2px solid #ccc; 
+		border-radius: 4px;
+		padding: 5pt;
+		text-align: center;
+		font-size: 10pt;
+	}
+
+	#ucCalendar{
+		overflow: auto;
+	}
+	.footerResumo { 
+		display: absolute;
+		bottom: 0;
+		position: fixed;
+		width: 101.3%;
+		height: 25pt;
+		margin-left: -5%;
+		text-align: center; 
+		border: 1pt solid #777;
+		border-radius: 10pt 10pt 0 0;
+		padding: 2pt;
+		border-bottom: 0pt;
+		background-color: #E57373;
+	}
+	.footerResumo span { margin-top: 5pt; color: white; font-weight: bold; }
+	.calendario { width: 15%; text-align: center;}
+
+	#pacienteNome { display: block; font-size: 14pt; font-weight: bold;  color: #6D4C41; }
+	#horarioCorpo, .horarioAgenda, .horarioAgenda table { display: block; width: 100%; }
+	.horarioAgenda span { color: #6D4C41; font-weight: bold;}
+	.horarioAgenda table td:first-child{ width: 70%; }
+	.horarioAgenda table td:last-child span{ 
+		display: block; 
+		text-align: right; 
+		padding: 2pt; 
+		white-space: nowrap;
+	}
+	#agendaItem { padding: 5pt; width: 100%;}
+	#horarioCorpo { 
+		display: inline-block; 
+		position: relative;
+		border-left: 1.5pt solid #ddd; 
+		min-height: 15pt;
+		padding-left: 5pt;
+		margin-left: -3%;
+	}	
+	#horarioCorpo.borda.OK { border-left: 2pt solid #488aff; }
+	#horarioCorpo.borda.FALTOU { border-left: 2pt solid #a94442; }
+	#horarioCorpo.borda.LIVRE { border-left: 2pt solid #33cd5f; }
+	#horarioCorpo.borda.BLOQUEADO { border-left: 2pt solid #ddd; }
+
+	.noResultsFound { display: block; }
 }

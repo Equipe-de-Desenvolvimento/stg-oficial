@@ -1,6 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
 import { Platform, Nav, MenuController } from 'ionic-angular';
-import { DatabaseProvider } from '../providers/database/database';
 
 @Component({
   templateUrl: 'app.html'
@@ -17,11 +16,10 @@ export class MyApp {
     //Criar uma pagina de Help!
   ];
 
-  constructor(platform: Platform, private databaseprovider: DatabaseProvider, public menu: MenuController) {
+  constructor(platform: Platform, public menu: MenuController) {
     platform.ready().then(() => {
-      // Verifica status do banco de dados
-      this.databaseprovider.getDatabaseState().subscribe(rdy => console.log(rdy));
-    }).catch((err) => console.log(err));
+      
+    }).catch((err) => {});
   }
 
   mudarPagina(pagina){

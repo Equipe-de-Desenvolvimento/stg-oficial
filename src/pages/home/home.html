@@ -1,7 +1,7 @@
 
 <ion-header>
 
-  <ion-navbar color="primary">
+  <ion-navbar *ngIf="showNavBar; else areaPesquisa" color="primary">
     <button ion-button menuToggle="" icon-only>
       <ion-icon name="menu"></ion-icon>
     </button>
@@ -9,21 +9,44 @@
     <ion-title>Agenda</ion-title>
 
     <ion-buttons end>
-      <button ion-button icon-only clear="true" color="dark">
+      <button ion-button icon-only clear="true" color="dark" (click)="showHideBarraPesquisa()">
         <ion-icon name="search"></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
 
+
+  <ng-template #areaPesquisa>
+    <div class="blueBorder" style="width: 100%"> 
+      <ul id="areaDeBusca" >
+        <li class="inputPaciente">
+          <ion-icon name="md-arrow-back" color="secondary" (click)="showHideBarraPesquisa()" id="iconBack">
+          </ion-icon>
+          <input type="text" name="search" placeholder="Paciente" [(ngModel)]="parametros.paciente">
+        </li>
+
+        <li class="li-border" (click)="selectEmpresa()">
+          <ion-icon name="md-globe"></ion-icon>
+        </li>
+
+        <li (click)="pesquisar()">
+          <button ion-button icon-only icon-end color="primary" class="pesquisar">
+            <ion-icon name="search"></ion-icon>
+          </button>
+        </li>
+
+      </ul>
+    </div>
+  </ng-template>
+
 </ion-header>
 
 <ion-content padding>
   <div *ngIf="calendarOptions">
-    <ng-fullcalendar #ucCalendar [options]="calendarOptions" 
+    <ng-fullcalendar #ucCalendar id='ucCalendar' [options]="calendarOptions" 
                     (eventClick)="eventClick($event.detail)" 
-                    (eventDrop)="updateEvent($event.detail)"
-                    (eventResize)="updateEvent($event.detail)" 
-                    (clickButton)="clickButton($event.detail)">
+                    (clickButton)="clickButton($event.detail)"
+                    (dayClick)="dayClick($event.detail)">
     </ng-fullcalendar>
   </div>
 </ion-content>

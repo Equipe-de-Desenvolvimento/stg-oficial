@@ -1,0 +1,17 @@
+<form>
+  <ion-list>
+    <ion-item (click)="selectEmpresa()">
+      <ion-label>Acesso Externo</ion-label>
+      <ion-icon item-end name="arrow-down"></ion-icon>
+    </ion-item>
+    <ion-item (click)="selectSituacao()">
+      <ion-label>Situacao</ion-label>
+      <ion-icon item-end name="arrow-down"></ion-icon>
+    </ion-item>
+    <ion-item item-end>
+      <button ion-button (click)="fecharPagina()" color="secondary" outline>
+        Pesquisar
+      </button>
+    </ion-item>
+  </ion-list>
+</form>

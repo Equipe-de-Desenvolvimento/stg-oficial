@@ -85,6 +85,8 @@ export class ExternoAdicionarPage {
         /* Tirando o efeito de loading */
         loadingEffect.dismiss();
 
+        // console.log(resultado); 
+
         // Verifica se o webservice retornou o objeto com as informações da solicitação
         // ou o Observable com erro de requisição
         if ( resultado.hasOwnProperty("status") && resultado.status !== "" ) {

@@ -12,11 +12,16 @@ export class ExternoPrincipalPage {
   public externoLista: any[];
 
   constructor(public modal: ModalController, public navCtrl: NavController, public navParams: NavParams, public database: DatabaseProvider, public alertCtrl: AlertController) {
-    // Faz uma busca no banco por todos os externos cadastrados
-    this.database.listaEnderecosExternos().then(data => { this.externoLista = data; });
-  }
-
-  ionViewDidLoad() {
+    
+    // A função so irá inicializar quando o banco estiver pronto
+    this.database.getDatabaseState().subscribe(rdy => {
+      if(rdy){ 
+        // Faz uma busca no banco por todos os externos cadastrados
+        this.database.listaEnderecosExternos().then(data => { 
+          this.externoLista = data; 
+        }).catch();
+      }
+    });
   }
 
   adicionarExterno(){

@@ -54,4 +54,18 @@ export class WebserviceProvider {
     });
   }
 
+  buscaAgendaLista(parametros){
+    var url = parametros.endereco + "app/buscandoAgenda?operador_id="+parametros.operador_id+"&paciente="+parametros.paciente+"&situacao="+parametros.situacao+"&data="+parametros.data+"&externoNome="+parametros.externoNome;
+    // console.log(url);
+    // Faz uma requisição GET para o endereco informado
+    return this.http.get(url)
+    .map((res) => { 
+      var resposta = res.json(); // Transforma a resposta do servidor em um JSON
+      return resposta;
+    })
+    .catch( (error: Response | any) => {
+      return Observable.throw(error.json().error || "Erro no Servidor.");
+    });
+  }
+
 }

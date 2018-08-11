@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>Agenda Lista</ion-title>
+  </ion-navbar>
+
+  <ion-toolbar no-border-top>
+    <ion-grid>
+      <ion-row align-items-center>
+        <ion-col col-11>
+          <ion-searchbar class="searchbar-input" [(ngModel)]="parametros.paciente" (ionInput)="filtraResutados($event)" placeholder="Paciente" ></ion-searchbar>
+        </ion-col>
+        <ion-col col-1>
+          <ion-icon name="options" class="pesquisa-avancada" (click)="mostrarOpcoesAvancadas($event)"></ion-icon>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <div *ngIf="agendaFiltrada.length > 0; else noResults" class="telaPrincipal">
+    <div *ngFor="let horario of agendaFiltrada" id="agendaItem">
+
+      <div id="horarioCorpo" class="borda {{horario.situacao}}">
+        <div *ngIf="horario.paciente.length > 0" id="pacienteNome">
+          {{horario.paciente.length > 0 ? horario.paciente : "Situação: " + horario.situacao}}       
+        </div>
+
+        <div class="horarioAgenda">
+          <table>
+            <tr>
+              <td>
+                <span class="externoNome" id="{{horario.situacao}}">{{horario.externoNome}}</span>    
+                <span class="statusHorario">Status: </span>    
+                <span>{{horario.status}}</span>
+              </td>
+              <td>
+                <span>{{horario.data}}</span>
+                <span>{{horario.inicio}} às {{horario.fim}}</span>    
+              </td>
+            </tr>
+          </table>
+        </div>
+
+      </div>
+      <hr style="width: 75%; height: 1px;">
+    </div>
+
+    <hr style="width: 100%; height: 2px;">
+    <p class="resumo">Livre: {{resumo.livre}}, Bloq: {{resumo.bloqueado}}, Ocu: {{resumo.ocupado}}, Faltou: {{resumo.faltou}}, TOTAL: {{resumo.total}}</p>
+  </div>
+  <br>
+  <br>
+  <br>
+</ion-content>
+
+
+<ng-template #noResults>
+  <p class="noResultsFound">
+    Não foi encontrado nenhum resultado!
+  </p> 
+</ng-template>

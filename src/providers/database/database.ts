@@ -37,6 +37,7 @@ export class DatabaseProvider {
     this.http.get('assets/inicializacao.sql') // Busca o conteudo do arquivo de inicialização do banco e executa
     .map(res => res.text())
     .subscribe(sql => {
+      // Executa o script no banco
       this.sqlitePorter.importSqlToDb(this.database, sql)
         .then(data => {
           this.databaseReady.next(true);
@@ -49,13 +50,14 @@ export class DatabaseProvider {
   listaEnderecosExternos(){
     return this.database.executeSql("SELECT * FROM tb_externo", [])
     .then((data) => {
+      // this.databaseReady.next(true);
       let result = [];
-      console.log("teste",data.rows.length);
       if (data.rows.length > 0) {
         for (let i = 0; i < data.rows.length; i++) {
           var empresas_id = (data.rows.item(i).empresas_id != '') ? JSON.parse(data.rows.item(i).empresas_id) : {};
           result.push({
             externo_id: data.rows.item(i).externo_id,
+            operador_id: data.rows.item(i).operador_id,
             nome: data.rows.item(i).nome,
             usuario: data.rows.item(i).usuario,
             senha: data.rows.item(i).senha,
@@ -78,14 +80,20 @@ export class DatabaseProvider {
   adicionaEnderecoExterno(externo) {
     var valores = [externo.endereco, externo.nome, externo.usuario, externo.senha, externo.empresas_id, externo.operador_id];
     return this.database.executeSql("INSERT INTO tb_externo (endereco, nome, usuario, senha, empresas_id, operador_id) VALUES (?, ?, ?, ?, ?, ?)", valores)
-    .then((data) => { return true; }, (err) => { return false; })
+    .then((data) => { 
+      // this.databaseReady.next(true); 
+      return true; 
+    }, (err) => { return false; })
     .catch((err) => { return false; });
   }
 
   atualizaEnderecoExterno(externo) {
     var valores = [externo.endereco, externo.nome, externo.usuario, externo.senha, externo.empresas_id, externo.operador_id, externo.externo_id];
     return this.database.executeSql("UPDATE tb_externo SET endereco = ?, nome = ?, usuario = ?, senha = ?, empresas_id = ?, operador_id = ? WHERE externo_id = ?", valores)
-    .then((data) => { return true; }, (err) => { return false; })
+    .then((data) => { 
+      // this.databaseReady.next(true);
+      return true; 
+    }, (err) => { return false; })
     .catch((err) => { return false; });
   }
 
@@ -93,7 +101,10 @@ export class DatabaseProvider {
     // Remove primeiro os registros na tabela de agenda associados a esse externo
     return this.database.executeSql("DELETE FROM tb_agenda WHERE externo_id = ?", [externo_id])
     .then((data) => { 
-      return this.deleteEnderecoExterno(externo_id).then(() => true).catch(() => false); 
+      return this.deleteEnderecoExterno(externo_id).then(() => {
+        // this.databaseReady.next(true);
+        return true;
+      }).catch(() => false); 
     }, (err) => { return false; })
     .catch((err) => { return false; });
   }
@@ -102,11 +113,11 @@ export class DatabaseProvider {
     // Remove o registro da tabela tb_externo
     return this.database.executeSql("DELETE FROM tb_externo WHERE externo_id = ?", [externo_id])
     .then((data) => { 
+      // this.databaseReady.next(true);
       return true; 
     }, (err) => { return false; })
     .catch((err) => { return false; });
   }
-
 
   getDatabaseState() {
     return this.databaseReady.asObservable();
