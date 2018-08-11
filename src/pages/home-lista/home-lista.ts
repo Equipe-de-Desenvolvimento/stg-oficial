@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, PopoverController, LoadingController, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, PopoverController, ModalController, LoadingController, AlertController } from 'ionic-angular';
 
 import { WebserviceProvider } from '../../providers/webservice/webservice';
 
@@ -16,7 +16,7 @@ export class HomeListaPage {
   agendaFiltrada: any = []; // Salva os registros após filtrar pelo nome.
   resumo: any; // Salva a qtde de resultados das req.
 
-  constructor(public navCtrl: NavController, public alertCtrl: AlertController, public webservice: WebserviceProvider, public loadingCtrl: LoadingController, public navParams: NavParams, public popoverCtrl: PopoverController) {
+  constructor(public navCtrl: NavController, public modalPage: ModalController, public alertCtrl: AlertController, public webservice: WebserviceProvider, public loadingCtrl: LoadingController, public navParams: NavParams, public popoverCtrl: PopoverController) {
     this.parametros = this.navParams.get('parametros');
     this.inf_pesq = [];
 
@@ -150,5 +150,12 @@ export class HomeListaPage {
     else {
       this.agendaFiltrada = this.agenda;
     }
+  }
+
+  // Detalhes do horario clicado
+  detalhesHorario(horario){
+    var modal = this.modalPage.create('HomeListaDetalhesPage', {horario: horario});
+    modal.onDidDismiss(() => {});
+    modal.present();
   }
 }

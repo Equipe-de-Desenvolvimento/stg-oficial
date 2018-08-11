@@ -1,0 +1,64 @@
+
+<ion-header>
+	<ion-navbar>
+		
+		<ion-icon name="md-arrow-back" id="iconBack" color="secondary" (click)="fecharPagina()"></ion-icon>
+		<h3 style="display: inline-block; margin-left: 5pt;"> Detalhes do Horario </h3>
+
+	</ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+	<div class="principal">
+		<div *ngIf="horario.paciente.length > 0">
+			<p>
+				<span class="title">{{horario.nomeCompleto}}</span>
+			</p>
+			<hr>
+		</div>
+
+		<div>
+			<table style="width: 100%">
+				<tr>
+					<td colspan="3">
+						<p><span class="title">Empresa:</span> {{horario.externoNome}}</p>
+					</td>
+					<td >
+						<div class="situacaoTexto" id="{{horario.situacao}}">
+							<span class="title">Status: </span>
+							<span>{{horario.status}}</span> 
+						</div>
+					</td>
+				</tr>
+			</table>
+			<hr>
+		</div>
+
+		<div *ngIf="verificaConvenioProcedimento" class="covProc">
+			<table>
+				<tr>
+					<td class="convenio">
+						<span class="title">Convenio:</span> {{horario.convenio}}
+					</td>
+					<td class="procedimento">
+						<span class="title">Procedimento:</span> {{horario.procedimento}}
+					</td>
+				</tr>
+			</table>
+			<hr>
+		</div>
+
+		<div>
+			<p class="data"><span class="title">Data:</span> {{horario.data}}</p>
+			<p class="horarioAgenda">{{horario.inicio}} às {{horario.fim}}</p>
+			<hr>
+		</div>
+
+		<div *ngIf="horario.observacoes != null">
+			<p class="titleObservacao">Observações</p>
+			<p class="observacao">{{horario.observacoes}}</p>
+		</div>
+
+	</div>
+</ion-content>

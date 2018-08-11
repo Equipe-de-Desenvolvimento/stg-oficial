@@ -19,7 +19,7 @@
 
 <ion-content padding>
   <div *ngIf="agendaFiltrada.length > 0; else noResults" class="telaPrincipal">
-    <div *ngFor="let horario of agendaFiltrada" id="agendaItem">
+    <div *ngFor="let horario of agendaFiltrada" id="agendaItem" (click)="detalhesHorario(horario)">
 
       <div id="horarioCorpo" class="borda {{horario.situacao}}">
         <div *ngIf="horario.paciente.length > 0" id="pacienteNome">
