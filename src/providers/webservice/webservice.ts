@@ -56,7 +56,7 @@ export class WebserviceProvider {
 
   buscaAgendaLista(parametros){
     var url = parametros.endereco + "app/buscandoAgenda?operador_id="+parametros.operador_id+"&paciente="+parametros.paciente+"&situacao="+parametros.situacao+"&data="+parametros.data+"&externoNome="+parametros.externoNome;
-    // console.log(url);
+
     // Faz uma requisição GET para o endereco informado
     return this.http.get(url)
     .map((res) => { 

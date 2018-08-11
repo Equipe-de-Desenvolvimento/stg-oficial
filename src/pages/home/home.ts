@@ -42,10 +42,12 @@ export class HomePage implements OnInit {
         // Traz a lista de enderecos externos
         this.database.listaEnderecosExternos().then( (data) => {
           this.externoLista = data;
-          for (let x = 0; x < data.length; x++){
-            let url = data[x].endereco+"app/listarhorarioscalendario?operador_id="+data[x].operador_id; 
-            this.parametros.url_externos_source.push(url); 
-            this.parametros.externos_selecionados_id.push(data[x].externo_id);
+          if (this.navParams.get('parametros') == null){
+            for (let x = 0; x < data.length; x++){
+              let url = data[x].endereco+"app/listarhorarioscalendario?operador_id="+data[x].operador_id; 
+              this.parametros.url_externos_source.push(url); 
+              this.parametros.externos_selecionados_id.push(data[x].externo_id);
+            }
           }
           this.configuraCalendario();
         }, (err) => false ).catch(() => false); 
@@ -55,6 +57,9 @@ export class HomePage implements OnInit {
   }
 
   configuraCalendario(){
+
+    console.log(this.parametros.url_externos_source);
+
     this.calendarOptions = {
       locale: 'pt-br',
       height: "auto",
@@ -82,13 +87,12 @@ export class HomePage implements OnInit {
   }
 
   pesquisar(){
-    this.configuraCalendario();
     for (let i = 0; i < this.parametros.url_externos_source.length; i++){
       this.parametros.url_externos_source[i] = this.parametros.url_externos_source[i] + "&paciente="+this.parametros.paciente;
     }
     
     this.showNavBar = !this.showNavBar;
-
+    
     // Renderiza a pagina novamente para atualizar o atributo event do full calendar
     this.navCtrl.setRoot(this.navCtrl.getActive().component, { parametros: this.parametros });
   }
@@ -118,13 +122,15 @@ export class HomePage implements OnInit {
           {
             text: 'Ok',
             handler: (data) => {
-              this.parametros.url_externos = []; // "Zera" a seleção anterior
+              
+              this.parametros.url_externos_source = []; // "Zera" a seleção anterior
+              this.parametros.externos_selecionados_id = []; // "Zera" a seleção anterior
               // O valor de "data" é um array de strings com os values selecionados
               if(data.length > 0){
                 for(let i = 0; i < data.length; i++){
                   let json = JSON.parse(data[i]); //Transforma a string em JSON novamente
                   let url = json.endereco+"app/listarhorarioscalendario?operador_id="+json.operador_id;
-                
+                  
                   this.parametros.url_externos_source.push(url); 
                   this.parametros.externos_selecionados_id.push(json.externo_id);
                 }
